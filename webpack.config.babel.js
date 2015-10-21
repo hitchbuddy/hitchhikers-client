@@ -38,6 +38,9 @@ const config = {
       exclude: /node_modules/,
       loader: DEPLOY ? 'babel-loader' : 'react-hot!babel-loader'
     }, {
+        test: /\.css$/,
+        loader: 'style!css'
+    }, {
       test: /\.scss$/,
       loaders: ["style", "css", "sass"]
     }, {
