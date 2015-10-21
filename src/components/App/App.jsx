@@ -1,35 +1,43 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Header from './Header/Header';
 import Maps from './Maps/Maps';
 import SideBar from './SideBar/SideBar';
-import * as actionCreators from './../../action-creators';
+import {getCurrentLocation} from './../../action-creators';
 
-export const App = React.createClass({
-  mixins: [PureRenderMixin],
-  render: () => {
-    return (<div>
-      <Header />
-      <div className="content">
-        <div className="left">
-          <Maps />
-        </div>
-        <div className="right">
-          <SideBar />
+class App extends Component {
+  render() {
+    const { dispatch, lat, lng } = this.props;
+    return (
+      <div>
+        <Header />
+        <div className="content">
+          <div className="left">
+            <Maps getCurrentLocation={() =>
+              dispatch(getCurrentLocation())
+            } lat={lat} lng={lng}/>
+          </div>
+          <div className="right">
+            <SideBar />
+          </div>
         </div>
       </div>
-    </div>);
-  },
-});
+    );
+  }
+}
 
-function mapStateToProps(state) {
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  lat: PropTypes.number,
+  lng: PropTypes.number,
+};
+
+function select(state) {
   return {
-    hitchhikers: state.get('hitchhikers'),
+    hitchhikers: state.hitchhikers,
+    lat: state.lat,
+    lng: state.lng,
   };
 }
 
-export const AppContainer = connect(
-  mapStateToProps,
-  actionCreators
-)(App);
+export default connect(select)(App);
