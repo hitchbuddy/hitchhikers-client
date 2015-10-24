@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import Maps from './Maps/Maps';
 import SideBar from './SideBar/SideBar';
 import {getCurrentLocation} from './../../action-creators';
+import './App.scss';
 
 class App extends Component {
   render() {

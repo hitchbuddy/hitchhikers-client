@@ -1,0 +1,26 @@
+#header {
+  height: 60px;
+  width: 100%;
+  background-color: #29AB87;
+
+  .brand {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    margin-left: 25px;
+    font-size: 24px;
+    color: #ffffff;
+  }
+
+  .search-bar {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    margin-left: 25px;
+
+    input {
+      width: 400px;
+      height: 30px;
+    }
+  }
+}
