@@ -1,14 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import GoogleMap from 'react-google-maps/lib/GoogleMap';
+const GoogleMapsAPI = window.google.maps;
 import './Maps.scss';
 
 class Maps extends Component {
-
   componentDidMount() {
+    const mapContainer = this.refs.map;
+    this.map = new GoogleMapsAPI.Map(mapContainer, {
+      center: this._getLocation(),
+      zoom: 12,
+    });
     this.props.getCurrentLocation();
   }
 
   componentDidUpdate() {
+    this.map.setCenter(this._getLocation());
   }
 
   _getLocation() {
@@ -19,14 +24,7 @@ class Maps extends Component {
   }
 
   render() {
-    return (
-        <GoogleMap containerProps={{
-          id: 'maps',
-        }}
-           ref="map"
-           defaultZoom={12}
-           center={this._getLocation()} />
-    );
+    return (<div id="map" ref="map"/>);
   }
 }
 

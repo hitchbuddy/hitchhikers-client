@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'react-google-maps';
 import './Header.scss';
 const GoogleMapsAPI = window.google.maps;
 
