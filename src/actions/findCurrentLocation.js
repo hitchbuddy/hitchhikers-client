@@ -8,14 +8,7 @@ const geolocation = (
   }
 );
 
-export function listHitchhikers(hitchhikers) {
-  return {
-    type: 'LIST_HITCHHIKERS',
-    hitchhikers: hitchhikers,
-  };
-}
-
-export function getCurrentLocation() {
+export default function findCurrentLocation() {
   return (dispatch) => {
     geolocation.getCurrentPosition((position) => {
       return dispatch({
@@ -24,11 +17,7 @@ export function getCurrentLocation() {
         lng: position.coords.longitude,
       });
     }, () => {
-      return dispatch({
-        type: 'GO_TO_LOCATION',
-        lat: 60,
-        lng: 105,
-      });
+      return;
     });
   };
 }

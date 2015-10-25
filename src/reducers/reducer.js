@@ -1,7 +1,7 @@
 import {Map} from 'immutable';
 import listHitchhikers from './listHitchhikers';
 import initializeReducer from './initializeReducer';
-import goToLocation from './goToLocation';
+import goToLocation from './goToLocationReducer';
 
 const INITIAL_STATE = new Map();
 

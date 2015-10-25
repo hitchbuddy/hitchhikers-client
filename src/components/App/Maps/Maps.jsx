@@ -18,8 +18,8 @@ class Maps extends Component {
 
   _getLocation() {
     return {
-      lat: this.props.lat || -25.363882,
-      lng: this.props.lng || 131.044922,
+      lat: this.props.lat,
+      lng: this.props.lng,
     };
   }
 

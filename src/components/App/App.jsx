@@ -3,19 +3,19 @@ import {connect} from 'react-redux';
 import Header from './Header/Header';
 import Maps from './Maps/Maps';
 import SideBar from './SideBar/SideBar';
-import {getCurrentLocation} from './../../action-creators';
+import findCurrentLocation from './../../actions/findCurrentLocation';
 import './App.scss';
 
 class App extends Component {
   render() {
     const { dispatch, lat, lng } = this.props;
     return (
-      <div>
+      <div className="app-container">
         <Header />
         <div className="content">
           <div className="left">
             <Maps getCurrentLocation={() =>
-              dispatch(getCurrentLocation())
+              dispatch(findCurrentLocation())
             } lat={lat} lng={lng}/>
           </div>
           <div className="right">
@@ -35,9 +35,8 @@ App.propTypes = {
 
 function select(state) {
   return {
-    hitchhikers: state.hitchhikers,
-    lat: state.lat,
-    lng: state.lng,
+    lat: state.get('currentLocation').get('lat'),
+    lng: state.get('currentLocation').get('lng'),
   };
 }
 
