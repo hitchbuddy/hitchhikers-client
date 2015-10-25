@@ -13,6 +13,8 @@ describe('initialize', () => {
     store.getState().toJS().currentLocation.should.eql({
       lat: 52.539,
       lng: 13.443,
+      city: 'Berlin',
+      country: 'Germany',
     });
   });
 });

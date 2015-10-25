@@ -12,7 +12,7 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
   case 'LIST_HITCHHIKERS':
     return listHitchhikers(state, action.hitchhikers);
   case 'GO_TO_LOCATION':
-    return goToLocation(state, action.lat, action.lng);
+    return goToLocation(state, action.lat, action.lng, action.city, action.country);
   default:
     return state;
   }
