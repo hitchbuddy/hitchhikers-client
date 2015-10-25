@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import './Header.scss';
+import React, { Component, PropTypes } from 'react';
+import {findCityFromAddressComponents, findCountryFromAddressComponents} from './../../../utils/addressComponentUtility';
 const GoogleMapsAPI = window.google.maps;
+import './Header.scss';
 
 class Header extends Component {
   componentDidMount() {
@@ -11,6 +12,8 @@ class Header extends Component {
       if (places.length === 0) {
         return;
       }
+      this.props.jumpToThisLocation(places[0].geometry.location.lat(), places[0].geometry.location.lng(),
+        findCityFromAddressComponents(places[0].address_components), findCountryFromAddressComponents(places[0].address_components));
     });
   }
 
@@ -26,5 +29,7 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  jumpToThisLocation: PropTypes.func.isRequired,
+};
 export default Header;
-

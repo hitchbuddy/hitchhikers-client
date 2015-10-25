@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import Maps from './Maps/Maps';
 import SideBar from './SideBar/SideBar';
 import findCurrentLocation from './../../actions/findCurrentLocation';
+import jumpToThisLocation from './../../actions/jumpToThisLocation';
 import './App.scss';
 
 class App extends Component {
@@ -11,7 +12,9 @@ class App extends Component {
     const { dispatch, lat, lng } = this.props;
     return (
       <div className="app-container">
-        <Header />
+        <Header jumpToThisLocation={(newLat, newLng, city, country) =>
+              dispatch(jumpToThisLocation(this.props.socket, newLat, newLng, city, country))
+            }/>
         <div className="content">
           <div className="left">
             <Maps getCurrentLocation={() =>

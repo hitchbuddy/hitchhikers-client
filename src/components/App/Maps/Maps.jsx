@@ -7,12 +7,13 @@ class Maps extends Component {
     const mapContainer = this.refs.map;
     this.map = new GoogleMapsAPI.Map(mapContainer, {
       center: this._getLocation(),
-      zoom: 12,
+      zoom: 5,
     });
     this.props.getCurrentLocation();
   }
 
   componentDidUpdate() {
+    this.map.setZoom(8);
     this.map.setCenter(this._getLocation());
   }
 
