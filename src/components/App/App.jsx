@@ -15,7 +15,7 @@ class App extends Component {
         <div className="content">
           <div className="left">
             <Maps getCurrentLocation={() =>
-              dispatch(findCurrentLocation())
+              dispatch(findCurrentLocation(this.props.socket))
             } lat={lat} lng={lng}/>
           </div>
           <div className="right">
@@ -28,6 +28,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  socket: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   lat: PropTypes.number,
   lng: PropTypes.number,

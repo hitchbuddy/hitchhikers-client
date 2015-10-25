@@ -1,21 +1,10 @@
-import { default as canUseDOM } from 'can-use-dom';
+import fetchCurrentLocation from './../utils/fetchCurrentLocation';
+import findHitchhikersAndGoToThisLocation from './findHitchhikersAndGoToThisLocation';
 
-const geolocation = (
-  canUseDOM && navigator.geolocation || {
-    getCurrentPosition: (success, failure) => {
-      failure("Your browser doesn't support geolocation.");
-    },
-  }
-);
-
-export default function findCurrentLocation() {
+export default function findCurrentLocation(socket) {
   return (dispatch) => {
-    geolocation.getCurrentPosition((position) => {
-      return dispatch({
-        type: 'GO_TO_LOCATION',
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
+    fetchCurrentLocation().then((location) => {
+      return findHitchhikersAndGoToThisLocation(dispatch, socket, location.lat, location.lng, location.city, location.country);
     }, () => {
       return;
     });
